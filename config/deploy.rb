@@ -1,10 +1,10 @@
-set :application, 'blog.danieledangeli.com'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :application, 'blog.danieledangeli'
+set :repo_url, 'git@github.com:danieledangeli/personal_ghost_blog.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-# set :deploy_to, '/var/www/my_app'
-# set :scm, :git
+set :deploy_to, '/home/blog.danieledangeli'
+set :scm, :git
 
 # set :format, :pretty
 # set :log_level, :debug
@@ -18,11 +18,15 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 
 namespace :deploy do
 
+  desc "Stop Forever"
+  task :stop do
+ 		run "cd /home/blog.danieledangeli/ && forever stop index.js"
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      run "cd /home/blog.danieledangeli/ && forever start index.js"
     end
   end
 
