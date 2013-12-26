@@ -1,0 +1,101 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+<main class="content" role="main">
+
+
+    <article class="{{post_class}} ui post fadeup transition hidden">
+        <div class="ui stacked segment">
+
+        {{! Everything inside the #post tags pulls data from the post }}
+        {{#post}}
+
+        {{! Everything below outputs content of the the post which has been published }}
+        <span class="post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time>
+
+        </span>
+            {{#foreach tags}}
+                <a class="ui black label post_tag">
+                  #{{name}}
+                </a>
+
+            {{/foreach}}
+        <br>
+            <div class="ui small breadcrumb">
+                <a class="section"  href="{{@blog.url}}">home</a>
+                <div class="divider"> / </div>
+                <a class="section">{{{tags.0.name}}}</a>
+                <div class="divider"> / </div>
+                <div class="active section">{{{ title }}}</div>
+            </div>
+
+        <div class="ui clearing divider"></div>
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        <footer class="post-footer">
+
+            {{#if author}}
+                <section class="author">
+                    <h4>{{author.name}}</h4>
+                    <p>{{author.bio}}</p>
+                </section>
+            {{/if}}
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+        {{/post}}
+
+        </div>
+        <div class="ui one column grid">
+        <div class="column">
+            <div class="ui piled blue segment">
+                <h2 class="ui header">
+                    <i class="icon inverted circular blue comment"></i> Comments
+                </h2>
+                <div class="ui comments">
+                    <div id="disqus_thread">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'erlangb'; // required: replace example with your forum shortname
+            var disqus_identifier = '{{post.id}}';
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </article>
+
+
+
+</main>

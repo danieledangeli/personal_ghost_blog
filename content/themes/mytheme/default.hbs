@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{! Document Settings }}
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="/assets/css/foundation.css" />
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/modernizr.js"></script>
+    <script src="/assets/js/semantic.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/semantic.css">
+
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="fixed">
+                <nav class="top-bar" data-topbar>
+                    <ul class="title-area">
+                        <li class="name">
+                            <h1><a href="#">{{@blog.title}}</a></h1>
+
+                        </li>
+                        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                    </ul>
+
+                    <section class="top-bar-section">
+                        <!-- Right Nav Section -->
+                        <ul class="right">
+                            <li class="active"><a href="#">Right Nav Button Active</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Right Button with Dropdown</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">About me</a></li>
+                                    <li><a href="#">My personal web site</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <!-- Left Nav Section -->
+                        <ul class="left">
+                            <li><a href="#">Left Nav Button</a></li>
+                        </ul>
+                    </section>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="large-3 columns middle">
+                {{#if @blog.logo}}<a id="blog-logo" href="{{@blog.url}}"> <img class="circular ui image" src="{{@blog.logo}}">{{/if}}
+            </div>
+             <div class="large-9 columns middle">
+                 <h1>{{@blog.title}}<small>{{@blog.description}}</small></h1>
+             </div>
+
+
+        </div>
+    </div>
+    <hr>
+{{! Everything else gets inserted here }}
+{{{body}}}
+<!-- Header -->
+
+<!-- Footer -->
+
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+                <p>All content copyright <a href="/">{{@blog.title}}</a> &copy; 2013 &bull; All rights reserved.</p>
+            </div>
+            <div class="large-6 columns">
+                <ul class="inline-list right">
+                    <a class="subscribe icon-feed" href="{{@blog.url}}/rss/"><span class="tooltip">Subscribe!</span></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+{{! Ghost outputs important scripts and data with this tag }}
+{{ghost_foot}}
+
+{{! The main JavaScript file for casper }}
+{{! <script type="text/javascript" src="/assets/js/index.js"></script> }}
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
+
+</body>
+</html>
