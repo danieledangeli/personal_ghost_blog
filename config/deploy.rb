@@ -1,32 +1,27 @@
 set :application, 'blog.danieledangeli'
 set :repo_url, 'git@github.com:danieledangeli/personal_ghost_blog.git'
-
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-
+set :user, "root"
+set :domain, ["37.139.23.206"]
 set :deploy_to, '/home/blog.danieledangeli'
-set :scm, :git
-
-# set :format, :pretty
-# set :log_level, :debug
-# set :pty, true
-
-# set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-# set :keep_releases, 5
+set :scm,         :git
+set :branch, "master"
 
 namespace :deploy do
 
   desc "Stop Forever"
-  task :stop do
- 		run "cd /home/blog.danieledangeli/ && forever stop index.js"
-  end
+   task :stop do
+     run "sudo forever stopall"
+   end
+
+   desc "Start Forever"
+     task :start do
+        run "cd #{current_path} && sudo forever start index.js"
+     end
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      run "cd /home/blog.danieledangeli/ && forever start index.js"
+
     end
   end
 
