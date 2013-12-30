@@ -22,6 +22,8 @@ namespace :deploy do
        execute "ln -s #{shared_path}/data #{release_path}/content/data"
        execute "ln -s #{shared_path}/images #{release_path}/content/images"
        execute "ln -s #{shared_path}/plugins #{release_path}/content/plugins"
+       execute "forever stopall"
+       execute "cd #{current_path} && npm install sqlite3"
        execute "cd #{current_path} && forever start index.js"
      end
    end
